@@ -507,6 +507,7 @@ textarea:focus {
 .decoration_slider{
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 .decoration_item a {
   font-size: 2rem;
