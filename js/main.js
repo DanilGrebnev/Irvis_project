@@ -98,6 +98,7 @@ function changeActiveClass (item) {
 }
 
 tabs.forEach(item => item.addEventListener('click', (e) => {
+    e.preventDefault()
     changeTabs(e.target, 'tree_link', 'aluminum_link', 'plastic_link', 'french_link', 'rise_link')
     changeActiveClass(e.target)
 }))
@@ -112,6 +113,7 @@ function removeClass (item, className){
 }
 
 popupCalcModal.addEventListener('click', (e) => {
+    e.preventDefault()
     value = e.target.getAttribute('alt');
     
     removeClass (wrapperImg, 'do_image_more')
@@ -144,6 +146,7 @@ let tabsData;
 decorationSlider.addEventListener('click', (e) => {
     e.stopPropagation()
     if(e.target.getElementsByTagName('a') && e.target.getAttribute(['data-set'])){
+        e.preventDefault()
         removeClass(noClickClass, "after_click")
         tabsData = e.target.getAttribute(['data-set'])
         e.target.closest('div').classList.add('after_click')
