@@ -149,7 +149,7 @@ decorationSlider.addEventListener('click', (e) => {
         e.target.closest('div').classList.add('after_click')
         
     }
-    changeTabs(`.${tabsData}`)
+    changeEndTabs(`.${tabsData}`)
     
 })
 
@@ -157,12 +157,13 @@ getElement('.internal')
 getElement('.external')
 getElement('.rising')
 getElement('.roof')
+
 function getElement (className) {
     let element = document.querySelector(className)
     arrElement.push(element)
 }
 
-function changeTabs(element){
+function changeEndTabs(element){
     arrElement.forEach(item => item.style.display='none')
     decorationContent.querySelector('.row').querySelector(element).style.display='block'
 }
