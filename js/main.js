@@ -111,10 +111,19 @@ let wrapperImg = getAllByClass('.balcon_icons_img');
 function removeClass (item, className){
     item.forEach(item => item.classList.remove(className))
 }
-
+let typeGlass;
+let height;
+let width;
+let formControl = getBySelector('.form-control');
+let formControlValue;
+let buttonEndCalc = popupCalcEnd.querySelectorAll('button')[1];
+buttonEndCalc.addEventListener('click', () => {
+    
+})
 popupCalcModal.addEventListener('click', (e) => {
     e.preventDefault()
     value = e.target.getAttribute('alt');
+    
     
     removeClass (wrapperImg, 'do_image_more')
     wrapperImg.forEach(item => {
@@ -129,6 +138,8 @@ popupCalcModal.addEventListener('click', (e) => {
             displayBlock(item)
         }
     })
+
+
 })
 //===============================================================================================popup_calc_profile =================================================================
 let buttonNext = getBySelector('.popup_calc_button')
@@ -172,4 +183,73 @@ function changeEndTabs(element){
 }
 
 
+//===================================================================timer=======================================
+let userTime = document.querySelector('.sale_subtitle');
+let deadLineValue = 8
+let dateDay = new Date().getDate() + deadLineValue
+
+function setLocalStorage() {
+    localStorage.setItem('userDate', deadLineValue)
+}
+
+
+userTime.innerText= `Успей сэкономить на остеклении! Только до ${dateDay} апреля`
+
+function getTimeRemaining(endtime) {
+    var t = Date.parse(endtime) - Date.parse(new Date());
+    var seconds = Math.floor((t / 1000) % 60);
+    var minutes = Math.floor((t / 1000 / 60) % 60);
+    var hours = Math.floor((t / (1000 * 60 * 60)) % 24);
+    var days = Math.floor(t / (1000 * 60 * 60 * 24));
+    return {
+      'total': t,
+      'days': days,
+      'hours': hours,
+      'minutes': minutes,
+      'seconds': seconds
+    };
+  }
+   
+  
+  function initializeClock(id, endtime) {
+    var clock = document.getElementById(id);
+    var daysSpan = clock.querySelector('#days');
+    var hoursSpan = clock.querySelector('#hours');
+    var minutesSpan = clock.querySelector('#minutes');
+    var secondsSpan = clock.querySelector('#seconds');
+   
+    function updateClock() {
+      var t = getTimeRemaining(endtime);
+   
+      daysSpan.innerHTML = t.days;
+      hoursSpan.innerHTML = ('0' + t.hours).slice(-2);
+      minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
+      secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
+   
+      if (t.total <= 0) {
+        clearInterval(timeinterval);
+        localStorage.clear()
+      }
+    }
+   
+    updateClock();
+    var timeinterval = setInterval(updateClock, 1000);
+    
+  }
+   
+  var deadline = new Date(Date.parse(new Date()) + deadLineValue * 24 * 60 * 60 * 1000); // for endless timer
+  initializeClock('timer', deadline);
+
+let balconType;
+let arr =[]
+let selectedGlazz = getBySelector('.do_image_more')
+
+document.addEventListener('click', (e) => {
+    e.preventDefault();
+    if(e.target.getElementsByTagName('button')){
+        console.log(e.target)
+    }
+})
+let ar = [];
+let button =document.querySelectorAll('button');
 
